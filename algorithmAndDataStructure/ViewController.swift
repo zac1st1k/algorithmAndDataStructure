@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         
         var dataList = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 97, 20, 45, 91, 62, 2, 15, 31, 59, 5]
 //        println(quicksort(&dataList))
-
         quickSort(&dataList, left: 0, right: dataList.count - 1)
+//        println(dataList)
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //quick sort with one parameter
     func quicksort(inout arr: [Int]) -> [Int] {
         if arr.count <= 1 {
             return arr
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
         return quicksort(&left) + [pivot] + quicksort(&right)
     }
     
+    //quick sort with partition func
     func partition(inout dataList: [Int], low: Int, high: Int) -> Int {
         var pivotPos = low
         var pivot = dataList[low]
@@ -66,4 +68,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
