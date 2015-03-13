@@ -16,8 +16,9 @@ class ViewController: UIViewController {
         
         var dataList = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 97, 20, 45, 91, 62, 2, 15, 31, 59, 5]
 //        println(quicksort(&dataList))
-        quickSort(&dataList, left: 0, right: dataList.count - 1)
+//        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
+        insertSort(&dataList)
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
     }
     
     //quick sort with one parameter
-    func quicksort(inout arr: [Int]) -> [Int] {
+    func quickSort(inout arr: [Int]) -> [Int] {
         if arr.count <= 1 {
             return arr
         }
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
                 right.append(arr[i])
             }
         }
-        return quicksort(&left) + [pivot] + quicksort(&right)
+        return quickSort(&left) + [pivot] + quickSort(&right)
     }
     
     //quick sort with partition func
@@ -67,4 +68,41 @@ class ViewController: UIViewController {
             quickSort(&dataList, left: pivotPos + 1, right: right)
         }
     }
+    
+    //insertion Sort with one parameter
+        func insertSort(inout arr:[Int]) {
+            if arr.count < 2 {
+                return
+            }
+            var sortedPos = 0
+            var tmp:Int, i:Int, j:Int
+            for i = sortedPos + 1; i < arr.count; i++ {
+                tmp = arr[i]
+                j = i - 1
+                while j >= 0 && arr[j] > tmp {
+                    arr[j + 1] = arr[j]
+                    j--
+                }
+                arr[j + 1] = tmp
+            }
+        }
+    
+//    func insertSort(inout arr:[Int]) {
+//        if arr.count < 2 {
+//            return
+//        }
+//        var sortedPos = 0
+//        var sorted = arr[sortedPos]
+//        for var i = sortedPos + 1; i < arr.count; i++ {
+//            for var j = 0; j < sortedPos + 1; j++ {
+//                if arr[i] < arr[j] {
+//                    (arr[i], arr[j]) = (arr[j], arr[i])
+//                    println(arr)
+//
+//                }
+//
+//            }
+//            sortedPos++
+//        }
+//    }
 }
