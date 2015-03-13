@@ -69,6 +69,15 @@ class ViewController: UIViewController {
         }
     }
     
+    //quick sort with filter
+    func quickSortWithFilter(var arr: [Int]) -> [Int] {
+        if arr.count <= 1 { return arr}
+        let pivot = arr.removeAtIndex(0)
+        var left = arr.filter { $0 < pivot }
+        var right = arr.filter { $0 >= pivot }
+        return quickSortWithFilter(left) + [pivot] + quickSortWithFilter(right)
+    }
+    
     //insertion Sort with one parameter
         func insertSort(inout arr:[Int]) {
             if arr.count < 2 {
