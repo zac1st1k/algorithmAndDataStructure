@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 //        println(quicksort(&dataList))
 //        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
-        insertSort(&dataList)
+        binaryInsertSort(&dataList)
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,24 +78,51 @@ class ViewController: UIViewController {
         return quickSortWithFilter(left) + [pivot] + quickSortWithFilter(right)
     }
     
-    //insertion Sort with one parameter
-        func insertSort(inout arr:[Int]) {
-            if arr.count < 2 {
-                return
-            }
-            var sortedPos = 0
-            var tmp:Int, i:Int, j:Int
-            for i = sortedPos + 1; i < arr.count; i++ {
-                tmp = arr[i]
-                j = i - 1
-                while j >= 0 && arr[j] > tmp {
-                    arr[j + 1] = arr[j]
-                    j--
-                }
-                arr[j + 1] = tmp
-            }
+    //insertion sort with one parameter
+    func insertSort(inout arr:[Int]) {
+        if arr.count < 2 {
+            return
         }
-    
+        var sortedPos = 0
+        var tmp:Int, i:Int, j:Int
+        for i = sortedPos + 1; i < arr.count; i++ {
+            tmp = arr[i]
+            j = i - 1
+            while j >= 0 && arr[j] > tmp {
+                arr[j + 1] = arr[j]
+                j--
+            }
+            arr[j + 1] = tmp
+        }
+    }
+    //binary insertion sort
+
+    func binaryInsertSort(inout arr:[Int]) {
+        if arr.count < 2 {
+            return
+        }
+        var sortedPos = 0
+        var tmp:Int, i:Int, j:Int, left:Int, right:Int, middle:Int
+        for i = sortedPos + 1; i < arr.count; i++ {
+            tmp = arr[i]
+            left = 0
+            right = i - 1
+            while (left <= right) {
+                middle = (left + right)/2
+                if (arr[middle] > tmp) {
+                    right = middle - 1
+                }
+                else {
+                    left = middle + 1
+                }
+            }
+            for j = i - 1; j >= left; j-- {
+                arr[j+1] = arr[j]
+            }
+            arr[left] = tmp
+            println(arr)
+        }
+    }
 //    func insertSort(inout arr:[Int]) {
 //        if arr.count < 2 {
 //            return
