@@ -18,8 +18,8 @@ class ViewController: UIViewController {
 //        println(quicksort(&dataList))
 //        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
-//        binaryInsertSort(&dataList)
-        println(selectionSort(&dataList))
+//        binaryInsertionSort(&dataList)
+        bubbleSort(&dataList)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
     }
     
     //insertion sort with one parameter
-    func insertSort(inout arr:[Int]) {
+    func insertionSort(inout arr:[Int]) {
         if arr.count < 2 {
             return
         }
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     }
     //binary insertion sort
 
-    func binaryInsertSort(inout arr:[Int]) {
+    func binaryInsertionSort(inout arr:[Int]) {
         if arr.count < 2 {
             return
         }
@@ -139,6 +139,17 @@ class ViewController: UIViewController {
                 (arr[j], arr[min]) = (arr[min], arr[j])
             }
             min = j + 1
+        }
+    }
+    
+    func bubbleSort(inout arr:[Int]) {
+        var length = arr.count
+        for var i = 0; i < length; i++ {
+            for var j = 0; j < length - i - 1; j++ {
+                if arr[j] > arr[j + 1] {
+                    (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
+                }
+            }
             println(arr)
         }
     }
