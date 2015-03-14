@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 //        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
 //        binaryInsertionSort(&dataList)
-        bubbleSort(&dataList)
+        cocktailSort(&dataList)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +82,7 @@ class ViewController: UIViewController {
     
     //insertion sort with one parameter
     func insertionSort(inout arr:[Int]) {
+        
         if arr.count < 2 {
             return
         }
@@ -130,59 +131,88 @@ class ViewController: UIViewController {
         var min = 0
         var length = arr.count
         var i = 0
+        var swap = 0, loop = 0
         for var j = 0; j < length - 1; j++ {
             for i = j + 1; i < length; i++ {
                 if arr[min] > arr[i] {
                     min = i
                 }
+                loop++
             }
             if  min != j {
                 (arr[j], arr[min]) = (arr[min], arr[j])
+                swap++
             }
             min = j + 1
+            loop++
         }
+        println("\(swap) times swap")
+        println("\(loop) times loop")
     }
     
     func bubbleSort(inout arr:[Int]) {
         var length = arr.count
-        var changeTimes = 0
+        var swap = 0
+        var loop = 0
+        var swapped = false
         for var i = length; i > 1 ; i-- {
             for var j = 0; j < i - 1; j++ {
                 if arr[j] > arr[j + 1] {
                     (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
-                    changeTimes++
+                    swapped = true
+                    swap++
                 }
+                loop++
             }
             println(arr)
+            loop++
+            if swapped == false {
+                println("break")
+                break
+            }
+            swapped = false
         }
-        println(changeTimes)
+        println("\(swap) times swap")
+        println("\(loop) times loop")
     }
     
     func cocktailSort(inout arr:[Int]) {
         var length = arr.count
-        var changeTimes = 0
+        var swap = 0
+        var loop = 0
         var flag = true
+        var swapped = false
         for var i = length; i > 2 ; i-- {
             if flag {
                 for var j = 0; j < i - 1; j++ {
                     if arr[j] > arr[j + 1] {
                         (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
-                        changeTimes++
+                        swap++
+                        swapped = true
                     }
+                    loop++
                 }
             }
             else {
                 for var j = i; j > 1; j-- {
                     if arr[j] < arr[j - 1] {
                         (arr[j], arr[j - 1]) = (arr[j - 1], arr[j])
-                        changeTimes++
+                        swap++
+                        swapped = true
                     }
+                    loop++
                 }
             }
+            if swapped == false {
+                break
+            }
+            swapped = !swapped
             flag = !flag
             println(arr)
+            loop++
         }
-        println(changeTimes)
+        println("\(swap) times swap")
+        println("\(loop) times loop")
     }
 //    func insertSort(inout arr:[Int]) {
 //        if arr.count < 2 {
