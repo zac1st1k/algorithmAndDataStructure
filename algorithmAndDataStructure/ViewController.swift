@@ -145,13 +145,44 @@ class ViewController: UIViewController {
     
     func bubbleSort(inout arr:[Int]) {
         var length = arr.count
-        for var i = length; i > 0 ; i-- {
+        var changeTimes = 0
+        for var i = length; i > 1 ; i-- {
             for var j = 0; j < i - 1; j++ {
                 if arr[j] > arr[j + 1] {
                     (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
+                    changeTimes++
                 }
             }
+            println(arr)
         }
+        println(changeTimes)
+    }
+    
+    func cocktailSort(inout arr:[Int]) {
+        var length = arr.count
+        var changeTimes = 0
+        var flag = true
+        for var i = length; i > 2 ; i-- {
+            if flag {
+                for var j = 0; j < i - 1; j++ {
+                    if arr[j] > arr[j + 1] {
+                        (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
+                        changeTimes++
+                    }
+                }
+            }
+            else {
+                for var j = i; j > 1; j-- {
+                    if arr[j] < arr[j - 1] {
+                        (arr[j], arr[j - 1]) = (arr[j - 1], arr[j])
+                        changeTimes++
+                    }
+                }
+            }
+            flag = !flag
+            println(arr)
+        }
+        println(changeTimes)
     }
 //    func insertSort(inout arr:[Int]) {
 //        if arr.count < 2 {
