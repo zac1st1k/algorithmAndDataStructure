@@ -14,11 +14,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var dataList = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 97, 20, 45, 91, 62, 2, 15, 31, 59, 5]
+        var dataList = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 99, 20, 45, 91, 62, 2, 15, 31, 59, 5]
 //        println(quicksort(&dataList))
 //        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
-        binaryInsertSort(&dataList)
+//        binaryInsertSort(&dataList)
+        println(selectionSort(&dataList))
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,6 +121,24 @@ class ViewController: UIViewController {
                 arr[j+1] = arr[j]
             }
             arr[left] = tmp
+            println(arr)
+        }
+    }
+    
+    func selectionSort(inout arr:[Int]) {
+        var min = 0
+        var length = arr.count
+        var i = 0
+        for var j = 0; j < length - 1; j++ {
+            for i = j + 1; i < length; i++ {
+                if arr[min] > arr[i] {
+                    min = i
+                }
+            }
+            if  min != j {
+                (arr[j], arr[min]) = (arr[min], arr[j])
+            }
+            min = j + 1
             println(arr)
         }
     }
