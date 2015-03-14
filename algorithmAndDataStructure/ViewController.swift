@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         var dataList = [42, 12, 88, 62, 63, 56, 1, 77, 88, 97, 99, 20, 45, 91, 62, 2, 15, 31, 59, 5]
+        println(dataList.count)
 //        println(quicksort(&dataList))
 //        quickSort(&dataList, left: 0, right: dataList.count - 1)
 //        println(dataList)
@@ -144,13 +145,12 @@ class ViewController: UIViewController {
     
     func bubbleSort(inout arr:[Int]) {
         var length = arr.count
-        for var i = 0; i < length; i++ {
-            for var j = 0; j < length - i - 1; j++ {
+        for var i = length; i > 0 ; i-- {
+            for var j = 0; j < i - 1; j++ {
                 if arr[j] > arr[j + 1] {
                     (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
                 }
             }
-            println(arr)
         }
     }
 //    func insertSort(inout arr:[Int]) {
